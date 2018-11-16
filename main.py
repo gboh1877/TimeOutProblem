@@ -1,6 +1,5 @@
 import json
 
-
 def restaurant_test(venue, users):
     """ Creates a list of reasons (if any) that a restaurant is not suitable
 
@@ -22,12 +21,11 @@ def restaurant_test(venue, users):
 
 
 if __name__ == "__main__":
-    #names = input("Who will be attending?").split(',')
-    venues = json.load(open("tests/venues.json"))
-    users = json.load(open("tests/users.json"))
+    names = input("Who will be attending?").split(',')
+    venues = json.load(open("venues.json"))
+    users = json.load(open("users.json"))
     result = {venue["name"]: restaurant_test(venue,users) for venue in venues}
     print("Places to go:\n"+"\n".join(str(x) for x,v in result.items() if not v))
-    print("Places to avoid:\n")
-    print('\n'.join(str(k)+'\n'.join(str(p) for p in v) for k,v in result.items() if v))
+    print("Places to avoid:"+"\n".join(str(k)+'\n'+'\n'.join(str(p) for p in v) for k,v in result.items() if v))
 
 
